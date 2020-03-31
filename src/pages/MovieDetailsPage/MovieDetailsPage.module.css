@@ -1,0 +1,19 @@
+.Wrapper {
+  width: 100%;
+  margin-top: 10px;
+  border: 1px solid grey;
+}
+
+.H5 {
+  font-size: 14px;
+  padding: 0;
+  margin: 14px;
+}
+
+.Link {
+  color: rgb(29, 113, 223);
+}
+
+.Link:active {
+  color: rgb(216, 112, 147);
+}

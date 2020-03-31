@@ -1,0 +1,13 @@
+.Li {
+  padding: 2px;
+  font-size: 16px;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.Link {
+  color: rgb(29, 113, 223);
+}
+
+.Link:active {
+  color: rgb(216, 112, 147);
+}
