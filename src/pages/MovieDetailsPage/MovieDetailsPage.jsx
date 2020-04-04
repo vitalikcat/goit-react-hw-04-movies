@@ -5,6 +5,7 @@ import styles from '../MovieDetailsPage/MovieDetailsPage.module.css';
 import * as API from '../../services/movies-api';
 
 const mapper = movie => {
+  const imgUrl = 'https://image.tmdb.org/t/p/w400';
   const {
     poster_path: image,
     title,
@@ -13,7 +14,7 @@ const mapper = movie => {
     genres,
   } = movie;
   return {
-    image,
+    image: imgUrl + image,
     title,
     userScore: Math.round(userScore),
     overview,

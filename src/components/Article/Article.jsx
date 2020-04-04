@@ -11,11 +11,7 @@ const Article = ({ movieData, onGoback }) => {
         Go back
       </button>
       <article className={styles.Article}>
-        <img
-          src={`https://image.tmdb.org/t/p/w400/${image}`}
-          alt=""
-          width="200px"
-        />
+        <img src={image} alt="" width="200px" />
         <div className={styles.Description}>
           <h2>{title}</h2>
           <span>User Score: {userScore}</span>
