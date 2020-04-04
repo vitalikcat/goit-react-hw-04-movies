@@ -3,11 +3,10 @@ import styles from '../Cast/Cast.module.css';
 import * as API from '../../services/movies-api';
 
 const mapper = items => {
-  const withoutAvatarImage =
-    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+  const imgUrl = 'https://image.tmdb.org/t/p/w400';
   return items.map(({ id, profile_path: image, name, character }) => ({
     id,
-    image: !image ? withoutAvatarImage : image,
+    image: image ? imgUrl + image : image,
     name,
     character,
   }));
@@ -45,12 +44,7 @@ export default class Cast extends Component {
           {!!cast.length &&
             cast.map(({ id, image, name, character }) => (
               <li key={id}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w400/${image}`}
-                  alt=""
-                  width="100"
-                  height="150"
-                />
+                <img src={image} alt="" width="100" height="150" />
                 <p>{name}</p>
                 <p>{character}</p>
               </li>

@@ -14,7 +14,7 @@ const mapper = movie => {
     genres,
   } = movie;
   return {
-    image: imgUrl + image,
+    image: image ? imgUrl + image : image,
     title,
     userScore: Math.round(userScore),
     overview,
