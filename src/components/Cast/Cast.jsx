@@ -1,16 +1,7 @@
 import React, { Component } from 'react';
 import styles from '../Cast/Cast.module.css';
+import { castMapper } from '../../functions/mappers';
 import * as API from '../../services/movies-api';
-
-const mapper = items => {
-  const imgUrl = 'https://image.tmdb.org/t/p/w400';
-  return items.map(({ id, profile_path: image, name, character }) => ({
-    id,
-    image: image ? imgUrl + image : image,
-    name,
-    character,
-  }));
-};
 
 export default class Cast extends Component {
   state = {
@@ -22,7 +13,7 @@ export default class Cast extends Component {
 
     API.getCasts(id)
       .then(({ data }) =>
-        this.setState({ cast: mapper(data.cast.slice(0, 6)) }),
+        this.setState({ cast: castMapper(data.cast.slice(0, 6)) }),
       )
       .catch(error => {
         Error({

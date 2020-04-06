@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import ArticlesList from '../../components/ArticlesList/ArticlesList';
+import { trendingMapper } from '../../functions/mappers';
 import * as API from '../../services/movies-api';
-
-const mapper = items => {
-  return items.map(({ id, title }) => ({
-    id,
-    title,
-  }));
-};
 
 export default class HomePage extends Component {
   state = {
@@ -23,7 +17,9 @@ export default class HomePage extends Component {
 
   getArticles = () => {
     API.getTrendingMovies()
-      .then(({ data }) => this.setState({ articles: mapper(data.results) }))
+      .then(({ data }) =>
+        this.setState({ articles: trendingMapper(data.results) }),
+      )
       .catch(error => console.log(error));
   };
 

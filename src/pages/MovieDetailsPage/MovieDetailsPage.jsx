@@ -2,25 +2,8 @@ import React, { Component, lazy, Suspense } from 'react';
 import { NavLink, Route, Switch } from 'react-router-dom';
 import Article from '../../components/Article/Article';
 import styles from '../MovieDetailsPage/MovieDetailsPage.module.css';
+import { movieMapper } from '../../functions/mappers';
 import * as API from '../../services/movies-api';
-
-const mapper = movie => {
-  const imgUrl = 'https://image.tmdb.org/t/p/w400';
-  const {
-    poster_path: image,
-    title,
-    popularity: userScore,
-    overview,
-    genres,
-  } = movie;
-  return {
-    image: image ? imgUrl + image : image,
-    title,
-    userScore: Math.round(userScore),
-    overview,
-    genres: genres.map(({ name }) => name).join(' '),
-  };
-};
 
 const AsyncCast = lazy(() =>
   import('../../components/Cast/Cast' /* webpackChunkName: "cast" */),
@@ -41,7 +24,7 @@ export default class MovieDetailsPage extends Component {
     const { movieId } = match.params;
 
     API.getMovieWithId(movieId)
-      .then(({ data }) => this.setState({ movieData: mapper(data) }))
+      .then(({ data }) => this.setState({ movieData: movieMapper(data) }))
       .catch(error => {
         Error({
           text: error,
@@ -66,7 +49,7 @@ export default class MovieDetailsPage extends Component {
     if (locationFrom) {
       history.push({ ...locationFrom });
     } else {
-      history.push('/movies');
+      history.push('/');
     }
   };
 

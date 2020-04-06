@@ -18,20 +18,18 @@ const AsyncMoviesPage = lazy(() =>
   ),
 );
 
-const App = () => {
-  return (
-    <div>
-      <Navigation />
+const App = () => (
+  <div>
+    <Navigation />
 
-      <Suspense fallback={<p>Loading...</p>}>
-        <Switch>
-          <Route path="/" exact component={AsyncHome} />
-          <Route path="/movies/:movieId" component={AsyncMovieDetailsPage} />
-          <Route path="/movies" component={AsyncMoviesPage} />
-        </Switch>
-      </Suspense>
-    </div>
-  );
-};
+    <Suspense fallback={<p>Loading...</p>}>
+      <Switch>
+        <Route path="/" exact component={AsyncHome} />
+        <Route path="/movies/:movieId" component={AsyncMovieDetailsPage} />
+        <Route path="/movies" component={AsyncMoviesPage} />
+      </Switch>
+    </Suspense>
+  </div>
+);
 
 export default App;

@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import styles from '../Reviews/Reviews.module.css';
 import NotFound from '../../components/NotFound/NotFound';
+import { reviewsMapper } from '../../functions/mappers';
 import * as API from '../../services/movies-api';
-
-const mapper = items => {
-  return items.map(({ id, author, content }) => ({
-    id,
-    author,
-    content,
-  }));
-};
 
 export default class Reviews extends Component {
   state = {
@@ -20,7 +13,9 @@ export default class Reviews extends Component {
     const { id } = this.props;
 
     API.getReviews(id)
-      .then(({ data }) => this.setState({ reviews: mapper(data.results) }))
+      .then(({ data }) =>
+        this.setState({ reviews: reviewsMapper(data.results) }),
+      )
       .catch(error => {
         Error({
           text: error,
